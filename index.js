@@ -32,8 +32,8 @@ app.use(function (req, res, next) {
 
 
 
-app.get('/', (req, res) => {
-  res.send('response is sent')
+app.get('*', (req, res) => {
+  res.send({ message: 'response is sent' })
 })
 
 

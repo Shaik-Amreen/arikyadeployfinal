@@ -4,7 +4,7 @@ mongoose.connect("mongodb+srv://placement:placement@cluster0.i5cpa.mongodb.net/m
     useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, //make this true
     autoIndex: true
   }).then((result) => {
-    console.log('Mongodb connection succeeded')
+    console.log('Mongodb connection succeeded in heroku')
   }).catch((err) => {
     console.log('error while connecting Mongodb' + JSON.stringify(err, undefined, 2))
   })

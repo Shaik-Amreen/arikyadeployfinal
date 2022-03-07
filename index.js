@@ -56,4 +56,4 @@ app.use("/notification", Notification)
 const host = '0.0.0.0';
 const port = process.env.PORT || 4000;
 
-app.listen(host, port, () => console.log("server listened"))
+app.listen(port, host, () => console.log("server listened"))

@@ -42,4 +42,7 @@ app.use("/Practice", Practice)
 
 app.use("/Dashboard", Dashboard)
 app.use("/notification", Notification)
-app.listen(4000 || process.env.port, () => console.log("server listened"))
+const host = '0.0.0.0';
+const port = process.env.PORT || 3000;
+
+app.listen(host, port, () => console.log("server listened"))

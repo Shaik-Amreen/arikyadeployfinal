@@ -1,4 +1,4 @@
-const Users = require("../Models/users")
+const Users = require("../models/users")
 const Admin = require("../models/facultyData")
 const Studentdata = require("../models/studentData")
 const nodemailer = require("nodemailer")
@@ -132,12 +132,12 @@ exports.updateoneUsers = (req, res) => {
 
 exports.changepassword = (req, res) => {
   passwordhashed = bcrypt.hashSync(req.body.password, 10)
-  console.log("passwordhashed",passwordhashed)
+  console.log("passwordhashed", passwordhashed)
   Users.updateOne(
     { college_id: req.body.college_id, mail: req.body.mail },
     { $set: { password: passwordhashed } },
     function (err, docs) {
-      !err ?(console.log("docs",docs),res.send({ message: "success" })) : res.send({ message: "error" })
+      !err ? (console.log("docs", docs), res.send({ message: "success" })) : res.send({ message: "error" })
     }
   )
 }
@@ -153,7 +153,7 @@ exports.checkRole = (req, res) => {
 }
 
 exports.forgotpassword = (req, res) => {
-  console.log("req",req)
+  console.log("req", req)
   Users.findOne(
     { college_id: req.body.college_id, mail: req.body.mail },
     (err, docs) => {

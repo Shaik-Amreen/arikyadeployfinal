@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://127.0.0.1:27017/arikya-dynamic",
+mongoose.connect("mongodb+srv://placement:placement@cluster0.i5cpa.mongodb.net/mitspcell?retryWrites=true&w=majority",
   {
     useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true, //make this true
     autoIndex: true

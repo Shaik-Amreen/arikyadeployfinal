@@ -29,6 +29,17 @@ app.use(function (req, res, next) {
   )
   next()
 })
+
+
+
+app.get('/', (req, res) => {
+  res.send('response is sent')
+})
+
+
+
+
+
 app.use("/", users)
 app.use("/data", data)
 app.use("/Studentdata", Studentdata)
@@ -43,6 +54,6 @@ app.use("/Practice", Practice)
 app.use("/Dashboard", Dashboard)
 app.use("/notification", Notification)
 const host = '0.0.0.0';
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 4000;
 
 app.listen(host, port, () => console.log("server listened"))

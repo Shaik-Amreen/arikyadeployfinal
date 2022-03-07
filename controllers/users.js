@@ -2,7 +2,7 @@ const Users = require("../models/users")
 const Admin = require("../models/facultyData")
 const Studentdata = require("../models/studentData")
 const nodemailer = require("nodemailer")
-const bcrypt = require("bcrypt")
+const bcryptjs = require("bcryptjs")
 const jwt = require("jsonwebtoken")
 const JWTSECRET = "amreenkousar"
 const mailcollection = require("../models/mail")
@@ -21,7 +21,7 @@ const encrypt = (data) => {
 }
 
 exports.createUsers = (req, res) => {
-  req.body.password = bcrypt.hashSync(req.body.password, 10);
+  req.body.password = bcryptjs.hashSync(req.body.password, 10);
   const tokenHashed = encrypt(jwt.sign({ subject: req.body.mail }, JWTSECRET))
   Users.findOne({ college_id: req.body.college_id, mail: req.body.mail }, (err, docs) => {
     (docs || err) ? res.send({ message: 'USER ALREADY EXISTS ' }) :
@@ -68,7 +68,7 @@ exports.findoneUsers = async (req, res) => {
   const tokenHashed = encrypt(jwt.sign({ subject: req.body.mail }, JWTSECRET))
 
   if (user) {
-    (bcrypt.compareSync(password, user.password)) ? (user.role !== 'student') ?
+    (bcryptjs.compareSync(password, user.password)) ? (user.role !== 'student') ?
       Admin.findOne({ mail: user.mail }, function (err, docs) {
         console.log(err, docs, user);
         (err) ? res.send(err) : res.status(200).send({ 'token': tokenHashed, 'admindata': req.body.mail, 'status': 'ok', role: user.role, college_id: docs.college_id })
@@ -131,7 +131,7 @@ exports.updateoneUsers = (req, res) => {
 }
 
 exports.changepassword = (req, res) => {
-  passwordhashed = bcrypt.hashSync(req.body.password, 10)
+  passwordhashed = bcryptjs.hashSync(req.body.password, 10)
   console.log("passwordhashed", passwordhashed)
   Users.updateOne(
     { college_id: req.body.college_id, mail: req.body.mail },
